@@ -18,14 +18,23 @@ const Home = () => (<div>Home</div>)
 
 const Students = () => (
   <div>
-    
-      students
-    
+    {
+      _.map(students, s => <StudentLink {...s} key={s.id}/>)
+    }
     
   </div>
 )
 
+const StudentLink = ({id, name}) => (
+  <div><Link to={`/students/${id}`}>{name}</Link></div>
+)
 
+const StudentContainer = ({match}) => {
+  let s = _.find(students, ['id', match.params.id])
+  return (
+    <StudentLine {...s} key={s.id}/>
+  )
+}
 
 const StudentLine = (props) => (
   <div>{props.id} {props.name} = {props.score}</div>
