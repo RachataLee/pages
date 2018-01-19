@@ -9,19 +9,19 @@ import {
 } from 'react-router-dom'
 
 const students = [
-  {id: 12,name: 'Johny Walker' , score: 23},
-  {id: 15,name: 'Jack Danial' , score: 26},
-  {id: 17,name: 'Obiwan Kennobi' , score: 28},  
+  {id: '12',name: 'Johny Walker' , score: 23},
+  {id: '15',name: 'Jack Danial' , score: 26},
+  {id: '17',name: 'Obiwan Kennobi' , score: 28},  
 ]
 
 const Home = () => (<div>Home</div>)
 
 const Students = () => (
-  <div>
+   <div>
     {
       _.map(students, s => <StudentLink {...s} key={s.id}/>)
     }
-    
+    <Route path="/students/:id" component={StudentContainer}/>
   </div>
 )
 
@@ -36,8 +36,8 @@ const StudentContainer = ({match}) => {
   )
 }
 
-const StudentLine = (props) => (
-  <div>{props.id} {props.name} = {props.score}</div>
+const StudentLine = ({id, name, score}) => (
+  <div>{id} {name} = {score}</div>
 )
 class App extends Component {
   render() {
